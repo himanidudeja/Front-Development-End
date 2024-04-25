@@ -1,0 +1,153 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- css -->
+    <style>
+        
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+.input{
+    width:451px;
+        border: 3px solid black;
+        height: 30px;
+}
+
+.demo {
+    text-align: center;
+    background-color: rgb(231, 231, 180);
+    padding: 20px; 
+    
+}
+
+/* Style for the main container */
+.container {
+    margin: auto;
+    max-width: 30vw;
+    padding: 20px; 
+}
+
+/* Style for the rows of buttons */
+.row {
+    display: flex;
+}
+
+/* Style for the input field */
+.row input {
+    flex: 1; 
+    font-size: 40px;
+    margin: 3px;
+    padding: 30px; 
+    border: 2px solid black;
+    border-radius: 5px;
+
+}
+
+/* Style for the buttons */
+.button {
+    flex: 1; 
+    font-size: 20px;
+    margin: 3px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 5px;
+    background-color: #f0f0f0; 
+    cursor: pointer;
+}
+
+/* Hover effect for buttons */
+.button:hover {
+    background-color: #e0e0e0;
+}
+
+/* Active state for buttons */
+.button:active {
+    background-color: #d0d0d0;
+}
+
+    </style>
+</head>
+
+       
+    
+<body>
+  <script>
+ // Create the <h1> element
+var h1Element = document.createElement("h1");
+h1Element.className = "demo";
+h1Element.textContent = "Calculator";
+
+// Create the main container <div> element
+var containerElement = document.createElement("div");
+containerElement.className = "container flex flex-col item-center row1 dud-auto m-w-20";
+
+// Create the input element
+var inputElement = document.createElement("input");
+inputElement.type = "text";
+inputElement.className = "input";
+containerElement.appendChild(inputElement);
+
+// Create the rows and buttons
+var rows = [
+  ["(", ")", "%", "AC"],
+  ["7", "8", "9", "/"],
+  ["4", "5", "6", "*"],
+  ["3", "2", "1", "-"],
+  ["0", ".", "=", "+"]
+];
+
+rows.forEach(function(row) {
+  var rowElement = document.createElement("div");
+  rowElement.className = "row";
+
+  row.forEach(function(buttonText) {
+    var buttonElement = document.createElement("button");
+    buttonElement.className = "button";
+
+
+    buttonElement.textContent = buttonText;
+
+    rowElement.appendChild(buttonElement);
+  });
+
+  containerElement.appendChild(rowElement);
+});
+
+// Append the elements to the document body
+document.body.appendChild(h1Element);
+document.body.appendChild(containerElement);
+
+// Add event listeners to the buttons
+var buttons = document.querySelectorAll(".button");
+
+buttons.forEach(function(button) {
+  button.addEventListener("click", function() {
+    var buttonValue = button.textContent;
+
+    if (buttonValue === "=") {
+      // Evaluate the input string
+      var result = eval(inputElement.value);
+      inputElement.value = result !== null ? result : "";
+    } else if (buttonValue === "AC") {
+      // Clear the input field
+      inputElement.value = "";
+    } else {
+      // Append the button value to the input field
+      inputElement.value += buttonValue;
+    }
+  });
+});
+
+  </script>
+        </body>
+        </html>
